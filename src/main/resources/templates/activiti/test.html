@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    数据:<input id="dataId" name="dataName">
+    流程ID:<input id="taskId" name="taskId">
+    type:<input id="type" name="type">
+
+</body>
+
+<!--<script th:src="@{/jquery/jquery-3.3.1.js}"></script>-->
+<script type="text/javascript">
+    function click111() {
+
+        // debugger;
+        var aa = {
+            "dataId" :document.getElementById("dataId"),
+            "taskId" : document.getElementById("taskId"),
+            "type" :document.getElementById("type")
+        };
+        // $.ajax({
+        //     type: "post",
+        //     url :"/process/startProcess",
+        //     data:aa
+        //
+        // })
+    }
+
+</script>
+</html>
