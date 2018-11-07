@@ -1,5 +1,6 @@
 package com.springactiviti.controller;
 
+import com.springactiviti.service.HisService;
 import com.springactiviti.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +13,16 @@ import java.util.Map;
 /**
  * 描述 : 流程控制
  *
- * @autor wangyf
+ * @autor 'wangyf'
  * @create 2018/10/25
  */
 @RestController
-@RequestMapping("/process")
+@RequestMapping("/processes")
 public class ProcessController {
-
+    @Autowired
     ProcessService processService;
-
+    @Autowired
+    HisService hisService;
     /**
      * 启动流程
      * @param applyId
@@ -36,7 +38,7 @@ public class ProcessController {
         map.put("dataId",dataId);
         map.put("type",type);
         Map process = processService.startProcess(map);
-        model.setViewName("frist");
+        model.setViewName("activiti/test");
         return model;
     }
     @RequestMapping("/executeProcess")
@@ -46,7 +48,11 @@ public class ProcessController {
         map.put("dataId",dataId);
         map.put("type",type);
         Map process = processService.executeProcess(map);
-        return new ModelAndView("frist");
+        return new ModelAndView("activiti/test");
     }
-
+    @RequestMapping("/getHisTask")
+    public void getHisTask() {
+        hisService.getHistoryTask();
+        System.out.println("执行成功");
+    }
 }

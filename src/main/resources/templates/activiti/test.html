@@ -8,25 +8,41 @@
     数据:<input id="dataId" name="dataName">
     流程ID:<input id="taskId" name="taskId">
     type:<input id="type" name="type">
-
+<button type="button" id="btn_start" onclick="click111()">这是启动流程的id</button>
+<button type="button" id="btn_hisProcess" onclick="getHis()">这是查询历史的</button>
+<button type="button" id="btn_expert" onclick="click222()" th:background="red">这是执行流程的id</button>
 </body>
 
-<!--<script th:src="@{/jquery/jquery-3.3.1.js}"></script>-->
+<script th:src="@{/jquery/jquery-3.3.1.js}"></script>
 <script type="text/javascript">
     function click111() {
+        debugger;
+        var data = {
+            "dataId" : document.getElementById("dataId").value,
+            "taskId" : document.getElementById("taskId").value,
+            "type" : document.getElementById("type").value
+        }
+        $.ajax({
+            type: "post",
+            url :"/processes/startProcess",
+            data: data
+        })
+    }
+    function click222() {
+        var data = {
+            "dataId" : document.getElementById("dataId").value,
+            "taskId" : document.getElementById("taskId").value,
+            "type" : document.getElementById("type").value
+        }
 
-        // debugger;
-        var aa = {
-            "dataId" :document.getElementById("dataId"),
-            "taskId" : document.getElementById("taskId"),
-            "type" :document.getElementById("type")
-        };
-        // $.ajax({
-        //     type: "post",
-        //     url :"/process/startProcess",
-        //     data:aa
-        //
-        // })
+        $.ajax({
+            type: "post",
+            url :"/processes/executeProcess",
+            data: data
+        })
+    }
+    function getHis(){
+        window.location.href = "/processes/getHisTask";
     }
 
 </script>
